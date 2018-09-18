@@ -6,15 +6,53 @@
 </head>
 <body>
 <script>
-    let arr = prompt("nhập giá trị bắt đầu và kết thúc (start,end) :","").split(" ").join("");
+    let arr = prompt("nhập giá trị bắt đầu và kết thúc (start,end) :", "").split(" ").join("");
+    let input = Number(prompt("nhập giá trị cần tìm: ", "0"));
     arr = arr.split(",");
-    arr = arrayMaker(Number(arr[0]),Number(arr[1]));
+    arr = arrayMaker(Number(arr[0]), Number(arr[1]));
 
 
 
 
+    let t0 = performance.now();
+    normalSearch(arr,input);
+    let t1 = performance.now();
+    console.log("Call to binary search took " + (t1 - t0) + " milliseconds.");
 
 
+
+    let t2 = performance.now();
+    normalSearch(arr,input);
+    let t3 = performance.now();
+    console.log("Call to normal search took " + (t3 - t2) + " milliseconds.");
+
+    function normalSearch(arr, value) {
+        for (let i = 0; i < arr.length; i++) {
+            if (arr[i] === value) {
+                return i;
+            }
+        }
+        return -1;
+    }
+
+    function binarySearch(arr, value) {
+        let low = 0;
+        let high = arr.length - 1;
+        let mid;
+        while (low <= high) {
+            mid = Math.floor((low + high) / 2);
+            if (arr[mid] === value) {
+                return mid;
+            }
+            else if (arr[mid] < value) {
+                low = mid + 1;
+            }
+            else {
+                high = mid - 1;
+            }
+        }
+        return -1;
+    }
 
     function arrayMaker(start, end) {
         let arr = [];
