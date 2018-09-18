@@ -6,10 +6,19 @@
 </head>
 <body>
 <script>
+    let arr = prompt("nhập giá trị bắt đầu và kết thúc (start,end) :","").split(" ").join("");
+    arr = arr.split(",");
+    arr = arrayMaker(Number(arr[0]),Number(arr[1]));
 
-    function arrayMaker(number) {
+
+
+
+
+
+
+    function arrayMaker(start, end) {
         let arr = [];
-        for (let i = 0; i < number; i++) {
+        for (let i = start; i < (end + 1); i++) {
             arr.push(i);
         }
         return arr;
